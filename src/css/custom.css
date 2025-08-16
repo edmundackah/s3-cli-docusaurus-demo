@@ -90,9 +90,7 @@ html[data-theme='dark'] .navbar {
   -webkit-overflow-scrolling: touch;
   padding-inline: 16px;
   scroll-padding-inline: 16px;
-  /* Scroll fade edges */
-  mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 6px), transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6px, #000 calc(100% - 6px), transparent);
+  /* remove masks to prevent obscuring items */
 }
 .navbar__items--left { flex: 1 1 auto; min-width: 0; }
 .navbar__items--right { flex: 0 0 auto; }
@@ -429,37 +427,48 @@ html[data-theme='dark'] body::before {
 /* Tables: Vercel-like surface, hover animation */
 .theme-doc-markdown table {
   width: 100%;
-  border: 1px solid var(--ifm-border-color);
-  border-radius: var(--site-radius-sm);
-  overflow: hidden;
-  background: var(--ifm-background-surface-color);
+  border: none;
+  background: transparent;
+  display: table;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
 }
-.theme-doc-markdown table { border-collapse: separate; border-spacing: 0; }
 .theme-doc-markdown table thead th {
-  background: linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0));
   color: var(--ifm-color-content-secondary);
   font-weight: 600;
 }
-html[data-theme='dark'] .theme-doc-markdown table thead th {
-  background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
-}
 .theme-doc-markdown table tr {
   border-top: 1px solid var(--ifm-border-color);
-  transition: background 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  transition: background 150ms ease, transform 150ms ease;
 }
-.theme-doc-markdown table tr:nth-child(2n) { background: color-mix(in oklab, var(--ifm-background-surface-color) 94%, black); }
-html[data-theme='dark'] .theme-doc-markdown table tr:nth-child(2n) { background: color-mix(in oklab, var(--ifm-background-surface-color) 94%, white); }
+.theme-doc-markdown table tr:nth-child(2n) {
+  background: rgba(0,0,0,0.02); /* fallback */
+  background: color-mix(in oklab, var(--ifm-background-surface-color) 94%, black);
+}
+html[data-theme='dark'] .theme-doc-markdown table tr:nth-child(2n) {
+  background: rgba(255,255,255,0.03); /* fallback */
+  background: color-mix(in oklab, var(--ifm-background-surface-color) 94%, white);
+}
 .theme-doc-markdown table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(106,50,161,0.06), transparent);
+  background: color-mix(in oklab, var(--ifm-color-primary) 4%, transparent);
   transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
 }
 html[data-theme='dark'] .theme-doc-markdown table tbody tr:hover {
-  background: linear-gradient(90deg, rgba(176,137,212,0.12), transparent);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+  background: color-mix(in oklab, var(--brand-primary-lightest) 10%, transparent);
 }
 .theme-doc-markdown table td, .theme-doc-markdown table th {
   padding: 10px 12px;
+  border-bottom: 1px solid var(--ifm-border-color);
+}
+
+/* Responsive tables: enable horizontal scroll on narrow screens */
+@media (max-width: 768px) {
+  .theme-doc-markdown table {
+    display: block;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
 }
 
 /* Focus ring */
@@ -484,10 +493,9 @@ img, video {
   height: auto;
 }
 
-.markdown table {
-  display: block;
-  overflow-x: auto;
-}
+/* Keep legacy responsive scroll only for non-doc pages */
+.markdown table { display: block; overflow-x: auto; }
+.theme-doc-markdown .markdown table { display: table; overflow: visible; }
 
 .theme-code-block, pre {
   overflow: auto;
