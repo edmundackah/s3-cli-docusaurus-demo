@@ -29,21 +29,14 @@ Helpful tip
 - Mermaid diagrams: fenced code blocks `mermaid`
 - Draw.io diagrams: MDX only using raw-loader (see `website/docs/site/diagrams/drawio-guide.mdx`)
 
-## Confetti
-Configure a celebration window in `website/docusaurus.config.ts` → `customFields`:
-```ts
-customFields: {
-  confettiStart: '2025-08-16T00:00:00Z',
-  confettiEnd: '2025-08-20T00:00:00Z',
-},
-```
-Leave empty strings to disable.
+## Visual/theme
+- Vercel-like minimalist theme with brand colors
+- Light/dark modes
 
 ## OpenAPI (optional)
-We pre-wired `docusaurus-plugin-openapi-docs`. When you’re ready:
-- Put a spec at `website/openapi/your.yaml`
-- Configure it under plugins in `website/docusaurus.config.ts`
-- Generate docs to `website/docs/api/` and add `API` link to navbar
+If you later want interactive API docs:
+- Option 1: Link to a hosted Swagger UI with `?url=` pointing to your spec
+- Option 2: Add an OpenAPI plugin (e.g., docusaurus-openapi-docs or Redocusaurus) and generate `docs/api/`
 
 ## Deploy via CLI
 Use CI or run locally:
