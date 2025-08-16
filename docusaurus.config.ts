@@ -124,13 +124,22 @@ const config: Config = {
       },
     ],
     ['docusaurus-plugin-drawio', {}],
+    [
+      'docusaurus-plugin-image-zoom',
+      {
+        selector: '.theme-doc-markdown img:not(.no-zoom), .markdown > img:not(.no-zoom)',
+        background: {
+          light: 'rgba(255,255,255,0.95)',
+          dark: 'rgba(0,0,0,0.95)'
+        },
+        config: {
+          margin: 24,
+          scrollOffset: 60
+        }
+      }
+    ]
   ],
   themeConfig: {
-    announcementBar: {
-      id: 'site-migration',
-      content: 'New docs experience: cleaner, faster, and mobile-friendly. 🎉',
-      isCloseable: true,
-    },
     navbar: {
       title: 'S3 Deployment CLI',
       logo: { alt: 'S3 CLI', src: 'img/logo.svg' },

@@ -29,12 +29,27 @@
   gap: 16px;
 }
 
+/* Dark mode frosted card */
+:global(html[data-theme='dark']) .card {
+  background: linear-gradient(rgba(16,16,19,0.5), rgba(16,16,19,0.5)) padding-box,
+              linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04)) border-box;
+}
+
 .card {
-  background: var(--ifm-background-surface-color);
-  border: 1px solid var(--ifm-border-color);
+  background: linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)) padding-box,
+              linear-gradient(180deg, rgba(255,255,255,0.6), rgba(0,0,0,0.06)) border-box;
+  border: 1px solid transparent;
   padding: 1rem;
   border-radius: 12px;
   height: 100%;
+  backdrop-filter: saturate(150%) blur(10px);
+  -webkit-backdrop-filter: saturate(150%) blur(10px);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--ifm-color-primary-light);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.06), 0 2px 6px rgba(0,0,0,0.04);
 }
 
 .card h3 {
