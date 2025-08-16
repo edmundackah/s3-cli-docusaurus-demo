@@ -126,6 +126,11 @@ const config: Config = {
     ['docusaurus-plugin-drawio', {}],
   ],
   themeConfig: {
+    announcementBar: {
+      id: 'site-migration',
+      content: 'New docs experience: cleaner, faster, and mobile-friendly. 🎉',
+      isCloseable: true,
+    },
     navbar: {
       title: 'S3 Deployment CLI',
       logo: { alt: 'S3 CLI', src: 'img/logo.svg' },
