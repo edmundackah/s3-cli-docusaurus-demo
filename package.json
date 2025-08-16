@@ -1,0 +1,35 @@
+{
+  "name": "s3-cli-docs",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve",
+    "clean": "rimraf build .docusaurus node_modules/.cache"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.8.1",
+    "@docusaurus/preset-classic": "3.8.1",
+    "@docusaurus/theme-classic": "3.8.1",
+    "@docusaurus/theme-mermaid": "3.8.1",
+    "@easyops-cn/docusaurus-search-local": "^0.52.1",
+    "canvas-confetti": "^1.9.3",
+    "clsx": "^2.1.1",
+    "docusaurus-plugin-drawio": "^0.4.0",
+    "docusaurus-plugin-openapi-docs": "^4.5.1",
+    "docusaurus-theme-openapi-docs": "^4.5.1",
+    "prism-react-renderer": "^2.4.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "raw-loader": "^4.0.2",
+    "rimraf": "^5.0.5",
+    "swagger-ui": "^5.17.14",
+    "swagger-ui-react": "^5.17.14",
+    "typescript": "^5.5.4"
+  }
+}

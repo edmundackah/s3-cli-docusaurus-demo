@@ -1,0 +1,38 @@
+# Draw.io diagrams: how to use
+
+We support embedding Draw.io (`.drawio`) files directly in pages (MDX).
+
+## Quick start
+1. Save your diagram as `my-diagram.drawio` next to the page.
+2. In an `.mdx` file, import the component and the diagram as raw text.
+
+```mdx
+import Drawio from '@theme/Drawio';
+import diagram from '!!raw-loader!./my-diagram.drawio';
+
+<Drawio content={diagram} />
+```
+
+Raw MDX you can copy:
+
+
+{`import Drawio from '@theme/Drawio';
+import diagram from '!!raw-loader!./my-diagram.drawio';
+
+<Drawio content={diagram} />`}
+
+- The diagram scales responsively.
+- Keep diagrams under ~1MB for faster page loads.
+
+## Tips for business users
+- Use readable font sizes in Draw.io (12–14px minimum).
+- Prefer simple shapes; avoid heavy filters/shadows.
+- Use color sparingly; stick to brand palette.
+
+## Organizing diagrams
+- Put `.drawio` files next to the page that references them.
+- For shared diagrams, use a `diagrams/` subfolder and relative imports.
+
+## Troubleshooting
+- If you see a build error, ensure the page file uses `.mdx` (not `.md`) when importing the Drawio component.
+- If the diagram doesn’t show, verify the import path and that Webpack raw-loader is installed (we’ve added it in this project).

@@ -1,0 +1,62 @@
+# Migrating from MkDocs (Material) to this Docusaurus site
+
+This guide explains how we ported the docs and how to migrate additional pages in a safe, repeatable way.
+
+## What changed at a glance
+- Platform: MkDocs ➜ Docusaurus 3.8.1
+- Theme: Material ➜ Docusaurus Classic (customized, dark-mode accessible)
+- Search: Local client-side search plugin
+- Extras: Mermaid diagrams, Draw.io support, improved dark mode palette
+
+## Folder layout
+- Old MkDocs sources: `s3-cli/static-site/docs/`
+- New Docusaurus site: `website/`
+  - Docs live in `website/docs`
+  - Blog posts live in `website/blog`
+  - Static assets live in `website/static` (served at the site root)
+
+## Migration script
+A helper script converts the most-used MkDocs features and copies assets.
+
+
+{`python3 website/scripts/migrate-from-mkdocs.py`}
+
+What it does:
+- Admonitions: `!!! type "Title"` ➜ `:::type Title` (note/tip/warning/danger/info/important/example)
+- Details: `??? abstract "Title"` ➜ `<details><summary>Title</summary>...</details>`
+- Copies `docs/js` and `docs/css` into `website/static/js` and `website/static/css`
+
+After running it, review the output under `website/docs/` and commit the changes.
+
+## MkDocs features ➜ Docusaurus equivalents
+- Admonitions (Material): `!!! note`, `!!! tip`, `!!! warning`, etc. ➜ Docusaurus `:::` blocks
+- Collapsible sections: `??? abstract "Title"` ➜ HTML `<details><summary>Title</summary>...</details>`
+- Mermaid: Enabled globally; use fenced code blocks with `mermaid`
+- Code copy buttons: Included in Docusaurus theme
+- Custom JS/CSS: Place under `website/static/` and reference by path (we auto-load existing JS)
+
+## Configuration mapping
+- MkDocs `site_name` ➜ Docusaurus `title` (in `docusaurus.config.ts`)
+- MkDocs `site_url` ➜ Docusaurus `url` + `baseUrl`
+- MkDocs `nav` ➜ Docusaurus `sidebars.ts` (we recreated the structure)
+- MkDocs `extra_javascript` / `extra_css` ➜ Copy into `website/static` and load (we auto-load `js/termynal.js` and `js/custom.js`)
+
+## Known gotchas
+- Angle brackets in headings (e.g. `## V<next-version>`) are parsed as JSX in MDX; escape as `\<next-version>`.
+- The local search worker path can be broken by trailing slashes and baseUrl rewrites. We set `trailingSlash: false` and configured the plugin with `docsRouteBasePath: '/'`.
+- If you embed HTML, ensure it’s valid and properly closed.
+
+## Verifying locally
+```bash
+cd website
+npm install
+npm run start
+```
+
+## Building for production
+```bash
+npm run build
+npm run serve
+```
+
+If you see errors, check the console output for the file and line; the most common issues are unescaped angle brackets or front matter formatting.

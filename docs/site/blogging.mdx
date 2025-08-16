@@ -1,0 +1,69 @@
+# Blogging: setup, contributing, and features
+
+This site has a built-in blog used for release notes and announcements.
+
+## Where blog posts live
+- Folder: `website/announcements`
+- Filename pattern: `YYYY-MM-DD-my-slug.md`
+- Front matter example (copyable):
+
+```md title="Blog post front matter" showLineNumbers
+---
+title: "Release 3.4.0"
+slug: release-3.4.0
+description: "Highlights of v3.4.0"
+tags: [release]
+---
+
+Intro paragraph here.
+
+<!-- truncate -->
+
+## Details
+More content below the truncation marker.
+```
+
+## Creating a new post
+- Create a new file under `website/blog/` with the date and slug.
+- Include `<!-- truncate -->` to control preview excerpts on the blog list.
+
+## Contributing for non-technical editors
+- You can write posts in plain Markdown.
+- Keep the title concise; use the description to summarize.
+- Use admonitions (copyable):
+
+```md title="Admonition (tip)" showLineNumbers
+:::tip Upgrade note
+Use `--help` to view command changes.
+:::
+```
+
+- Use code blocks with a language (copyable):
+```bash title="Code block" showLineNumbers
+python s3-cli.py --help
+```
+
+## Release notes automation
+We provide a helper that converts `docs/release-note.md` into individual blog posts:
+
+```bash
+python3 website/scripts/release-notes-to-blog.py
+```
+
+- It generates one post per version with a description and truncation marker.
+- You can edit the generated posts afterward for clarity.
+
+## Advanced: diagrams (Mermaid & Draw.io)
+- Mermaid: Use fenced code blocks with `mermaid`.
+- Draw.io: In an `.mdx` post, import the diagram and component (copyable):
+
+```mdx title="Draw.io MDX snippet" showLineNumbers
+import Drawio from '@theme/Drawio';
+import diagram from '!!raw-loader!./my-diagram.drawio';
+
+<Drawio content={diagram} />
+```
+
+## Local preview
+- Start the dev server: `cd website && npm install && npm run start`
+- Visit `/announcements` to see posts; edits hot-reload automatically.

@@ -1,0 +1,36 @@
+# Blog authors: how to set up and use
+
+We support per-author metadata for blog posts (name, title, avatar, links).
+
+## Configure authors
+Authors are defined in `website/blog/authors.yml`:
+
+
+{`edmund:
+  name: Edmund
+  title: S3 CLI Maintainer
+  url: https://github.com/edmund
+  image_url: https://www.gravatar.com/avatar/?d=identicon`}
+
+Add more authors as needed using unique keys.
+
+## Use an author in a post
+In a blog post front matter, reference the author key:
+
+{`---
+# single author
+authors: [edmund]
+---`}
+
+Multiple authors:
+
+{`---
+authors: [edmund, docs-bot]
+---`}
+
+You can also inline author info directly in front matter if you prefer not to use `authors.yml`.
+
+## Tips
+- Provide a square `image_url` (e.g., 128×128) for best results.
+- Use tags like `[release]`, `[announcement]` for filtering.
+- Keep `title` short; use `description` and the first paragraph for the preview.

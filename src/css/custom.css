@@ -1,0 +1,198 @@
+/* Typography */
+:root {
+  --ifm-font-family-base: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  --ifm-font-size-base: 16px;
+  --ifm-heading-font-weight: 650;
+  --ifm-line-height-base: 1.6;
+  --ifm-code-font-size: 0.95rem;
+  /* NatWest brand tokens */
+  --brand-primary: #4C0B8A; /* NatWest Purple (assumed) */
+  --brand-primary-dark: #3E0970;
+  --brand-primary-darker: #33065F;
+  --brand-primary-darkest: #260448;
+  --brand-primary-light: #6A32A1;
+  --brand-primary-lighter: #8B5ABD;
+  --brand-primary-lightest: #B089D4;
+}
+
+/* Light mode palette (minimalist) */
+:root {
+  --ifm-color-primary: var(--brand-primary);
+  --ifm-color-primary-dark: var(--brand-primary-dark);
+  --ifm-color-primary-darker: var(--brand-primary-darker);
+  --ifm-color-primary-darkest: var(--brand-primary-darkest);
+  --ifm-color-primary-light: var(--brand-primary-light);
+  --ifm-color-primary-lighter: var(--brand-primary-lighter);
+  --ifm-color-primary-lightest: var(--brand-primary-lightest);
+  /* Ensure surfaces and borders are visible in light mode */
+  --ifm-background-color: #ffffff;
+  --ifm-background-surface-color: #f8fafc; /* subtle card background */
+  --ifm-border-color: #e5e7eb; /* light gray border */
+  --ifm-color-content: #1f2937;
+  --ifm-color-content-secondary: #4b5563;
+}
+
+/* Dark mode: Vercel-like neutrals + electric accents */
+html[data-theme='dark'] {
+  --ifm-background-color: #0c0c0f; /* slightly lighter for readability */
+  --ifm-background-surface-color: #111316;
+  --ifm-navbar-background-color: rgba(10,10,10,0.7);
+  --ifm-footer-background-color: #0a0a0a;
+  /* Use near-white for primary text/links to improve readability */
+  --ifm-color-primary: #ffffff;
+  --ifm-color-content: #f3f4f6;
+  --ifm-color-content-secondary: #d1d5db;
+  --ifm-border-color: #23262d;
+}
+
+/* Navbar: glassy */
+.navbar {
+  backdrop-filter: saturate(180%) blur(12px);
+  border-bottom: 1px solid var(--ifm-border-color);
+  box-shadow: none !important; /* remove default shadow */
+}
+
+/* Hero gradients */
+.hero--primary {
+  background: radial-gradient(800px 300px at 50% -10%, rgba(76, 11, 138, 0.25), rgba(255,255,255,0) 60%),
+    radial-gradient(600px 200px at 60% 0%, rgba(139, 90, 189, 0.18), rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(0,0,0,0.4), rgba(0,0,0,0.85));
+}
+
+/* Headings tightening */
+.container .markdown h1, .container .markdown h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Cards and surfaces */
+.card, .theme-doc-sidebar-container {
+  background: var(--ifm-background-surface-color, #ffffff);
+  border: 1px solid var(--ifm-border-color, #e5e7eb);
+}
+
+/* Avoid over-styling global .menu used by the mobile navbar sidebar */
+.navbar-sidebar .menu {
+  background: inherit;
+  border: 0;
+}
+
+/* Code blocks */
+.theme-code-block {
+  background: var(--ifm-background-surface-color);
+  border: 1px solid var(--ifm-border-color);
+}
+.theme-code-block .token.comment { color: #9ca3af; }
+.theme-code-block .token.keyword { color: #60a5fa; }
+.theme-code-block .token.string { color: #34d399; }
+.theme-code-block .token.number { color: #fbbf24; }
+.theme-code-block .token.function { color: #f472b6; }
+.theme-code-block .token.boolean { color: #f87171; }
+.theme-code-block .token.operator { color: #e5e7eb; }
+
+/* Admonitions: toned down */
+.alert { border: 1px solid var(--ifm-border-color); }
+
+/* Admonition palettes (light) */
+:root {
+  --alert-info-bg: rgba(59, 130, 246, 0.08);   /* blue-500 */
+  --alert-info-border: #3b82f6;
+  --alert-success-bg: rgba(22, 163, 74, 0.08); /* green-600 */
+  --alert-success-border: #16a34a;
+  --alert-warning-bg: rgba(217, 119, 6, 0.10); /* amber-600 */
+  --alert-warning-border: #d97706;
+  --alert-danger-bg: rgba(239, 68, 68, 0.10);  /* red-500 */
+  --alert-danger-border: #ef4444;
+  --alert-tip-bg: rgba(106, 50, 161, 0.10);    /* brand purple tint */
+  --alert-tip-border: #6a32a1;
+  --alert-note-bg: rgba(107, 114, 128, 0.10);  /* gray-500 */
+  --alert-note-border: #6b7280;
+}
+
+.alert--info { background: var(--alert-info-bg); border-left: 4px solid var(--alert-info-border); }
+.alert--success { background: var(--alert-success-bg); border-left: 4px solid var(--alert-success-border); }
+.alert--warning { background: var(--alert-warning-bg); border-left: 4px solid var(--alert-warning-border); }
+.alert--danger { background: var(--alert-danger-bg); border-left: 4px solid var(--alert-danger-border); }
+.alert--tip { background: var(--alert-tip-bg); border-left: 4px solid var(--alert-tip-border); }
+.alert--secondary, .alert--note { background: var(--alert-note-bg); border-left: 4px solid var(--alert-note-border); }
+
+.alert--info .alert__title { color: var(--alert-info-border); }
+.alert--success .alert__title { color: var(--alert-success-border); }
+.alert--warning .alert__title { color: var(--alert-warning-border); }
+.alert--danger .alert__title { color: var(--alert-danger-border); }
+.alert--tip .alert__title { color: var(--alert-tip-border); }
+.alert--secondary .alert__title, .alert--note .alert__title { color: var(--alert-note-border); }
+
+/* Admonition palettes (dark) */
+html[data-theme='dark'] .alert--info { background: rgba(59, 130, 246, 0.16); border-left-color: #60a5fa; }
+html[data-theme='dark'] .alert--success { background: rgba(22, 163, 74, 0.16); border-left-color: #34d399; }
+html[data-theme='dark'] .alert--warning { background: rgba(217, 119, 6, 0.18); border-left-color: #fbbf24; }
+html[data-theme='dark'] .alert--danger { background: rgba(239, 68, 68, 0.18); border-left-color: #f87171; }
+html[data-theme='dark'] .alert--tip { background: rgba(176, 137, 212, 0.22); border-left-color: #d9c6f0; }
+
+/* Buttons: keep strong brand background with readable text in dark mode */
+html[data-theme='dark'] .button.button--primary {
+  background-color: var(--brand-primary);
+  border-color: var(--brand-primary);
+  color: #ffffff;
+}
+html[data-theme='dark'] .button.button--primary:hover {
+  background-color: var(--brand-primary-light);
+  border-color: var(--brand-primary-light);
+}
+html[data-theme='dark'] .alert--secondary, html[data-theme='dark'] .alert--note { background: rgba(107, 114, 128, 0.20); border-left-color: #9ca3af; }
+
+/* Links: subtle underline on hover */
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* Footer minimal */
+.footer {
+  border-top: 1px solid var(--ifm-border-color);
+}
+
+/* Termynal styles are imported from static/css/termynal.css */
+
+
+/* Responsive adjustments */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+.markdown table {
+  display: block;
+  overflow-x: auto;
+}
+
+.theme-code-block, pre {
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 4rem 0 2rem;
+  }
+  .container .markdown h1 {
+    font-size: 1.75rem;
+  }
+  .theme-code-block {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 3rem 0 1.5rem;
+  }
+  .theme-code-block {
+    font-size: 0.85rem;
+  }
+  .button {
+    padding: 0.55rem 0.9rem;
+  }
+}
+
