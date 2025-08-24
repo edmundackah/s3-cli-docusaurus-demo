@@ -1,11 +1,14 @@
-.collapsible {
+.collapsibleContainer {
   border: 1px solid var(--ifm-border-color);
   border-radius: var(--site-radius-sm);
   margin-bottom: 1rem;
   transition: all 0.2s ease-in-out;
 }
 
-.collapsible summary {
+.collapsibleButton {
+  background: none;
+  border: none;
+  width: 100%;
   padding: 0.75rem 1.25rem;
   cursor: pointer;
   font-weight: 600;
@@ -13,23 +16,25 @@
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.2s ease-in-out;
+  color: var(--ifm-color-content);
+  font-size: inherit;
+  font-family: inherit;
 }
 
-.collapsible summary:hover {
+.collapsibleButton:hover {
   background-color: var(--ifm-background-surface-color);
 }
 
-.collapsible summary::after {
-  content: '▶';
+.arrow {
   font-size: 0.8em;
   transition: transform 0.2s ease-in-out;
 }
 
-.collapsible[open] summary::after {
+.arrowOpen {
   transform: rotate(90deg);
 }
 
-.collapsible[open] > div {
+.collapsibleContent {
   padding: 1.25rem;
   border-top: 1px solid var(--ifm-border-color);
 }

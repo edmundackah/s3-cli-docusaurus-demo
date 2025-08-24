@@ -6,20 +6,28 @@ import PdfViewer from '@theme/PdfViewer';
 
 # PDF Viewer
 
-You can easily embed PDF documents into your Markdown pages using the `PdfViewer` component. This component provides a read-only view of the PDF, allowing users to view the document without leaving the page.
+You can easily embed PDF documents into your Markdown pages using the `PdfViewer` component. This component provides a read-only view of the PDF inside a collapsible container.
 
 ## Usage
 
-To use the `PdfViewer` component, you'll need to import it at the top of your `.mdx` file:
+To use the `PdfViewer` component, import it at the top of your `.mdx` file:
 
 ```md
 import PdfViewer from '@theme/PdfViewer';
 ```
 
-Then, you can use the component in your Markdown, providing the URL of the PDF you want to display:
+Then, you can use the component in your Markdown, providing the filename of the PDF from the `/static/pdfs` directory:
 
 ```md
-<PdfViewer url="/pdfs/simplepdf-test.pdf" />
+<PdfViewer url="simplepdf-test.pdf" />
+```
+
+### Custom Title
+
+You can also specify a `title` for the collapsible section. The default value is `View PDF`.
+
+```md
+<PdfViewer url="simplepdf-test.pdf" title="View Test PDF" />
 ```
 
 ### Custom Dimensions
@@ -27,11 +35,11 @@ Then, you can use the component in your Markdown, providing the URL of the PDF y
 You can also specify the `width` and `height` of the PDF viewer by passing them as props. The default values are `width="100%"` and `height="800px"`.
 
 ```md
-<PdfViewer url="/pdfs/simplepdf-test.pdf" width="800px" height="600px" />
+<PdfViewer url="simplepdf-test.pdf" width="800px" height="600px" />
 ```
 
 ## Example
 
 Here's a live example of the `PdfViewer` component in action, displaying a test PDF:
 
-<PdfViewer url="/pdfs/alloy_grafana.pdf" />
+<PdfViewer url="alloy_grafana.pdf" title="View Alloy Grafana PDF" />

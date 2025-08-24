@@ -595,26 +595,3 @@ img, video {
   }
 }
 
-/* Swagger UI Dark Mode Overrides */
-html[data-theme='dark'] .swagger-ui .opblock {
-  background-color: var(--ifm-background-surface-color);
-  border-color: var(--ifm-border-color);
-}
-html[data-theme='dark'] .swagger-ui .opblock .opblock-summary {
-  border-color: var(--ifm-border-color);
-}
-html[data-theme='dark'] .swagger-ui .opblock .opblock-summary-path,
-html[data-theme='dark'] .swagger-ui .opblock .opblock-summary-description,
-html[data-theme='dark'] .swagger-ui .info .title,
-html[data-theme='dark'] .swagger-ui .model-title,
-html[data-theme='dark'] .swagger-ui .opblock-tag {
-  color: var(--ifm-color-content);
-}
-html[data-theme='dark'] .swagger-ui section.models {
-  background: var(--ifm-background-surface-color);
-  border-color: var(--ifm-border-color);
-}
-html[data-theme='dark'] .swagger-ui .model-box {
-  background: var(--ifm-background-color);
-}
-

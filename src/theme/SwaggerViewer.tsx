@@ -1,34 +1,74 @@
-import React from 'react';
-import SwaggerUI from "swagger-ui-react";
-import "swagger-ui-react/swagger-ui.css";
+import React, { useState } from 'react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import useIsBrowser from '@docusaurus/useIsBrowser';
-import styles from './collapsible.module.css'; 
+import { useColorMode } from '@docusaurus/theme-common';
+import styles from './collapsible.module.css';
 
-interface Props {
-  url: string;
-  title?: string; 
+type RapiDocProps = {
+  'spec-url': string;
+  'theme'?: 'light' | 'dark';
+  'bg-color'?: string;
+  'text-color'?: string;
+  'primary-color'?: string;
+  'render-style'?: 'read' | 'view' | 'focused';
+  'show-header'?: 'false' | 'true';
+  'show-info'?: 'false' | 'true';
+  'allow-search'?: 'false' | 'true';
+  'allow-advanced-search'?: 'false' | 'true';
+  style?: React.CSSProperties;
+};
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'rapi-doc': RapiDocProps & React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>;
+    }
+  }
 }
 
-const SwaggerViewer: React.FC<Props> = ({ url, title = 'View API Specification' }) => {
-  const fullUrl = useBaseUrl(url);
-  const isBrowser = useIsBrowser();
+interface SwaggerViewerProps {
+  url: string;
+  title?: string;
+}
 
-  if (!url) {
-    return <h2>Swagger spec URL is missing.</h2>;
-  }
-
-  if (!isBrowser) {
-    return <h2>Loading Swagger...</h2>;
-  }
+const SwaggerViewer: React.FC<SwaggerViewerProps> = ({ url, title = 'View API Specification' }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const fullUrl = useBaseUrl(`/api/${url}`);
 
   return (
-    <details className={styles.collapsible}>
-      <summary>{title}</summary>
-      <div style={{ overscrollBehavior: 'contain' }}>
-        <SwaggerUI url={fullUrl} />
-      </div>
-    </details>
+    <div className={styles.collapsibleContainer}>
+      <button onClick={() => setIsOpen(!isOpen)} className={styles.collapsibleButton}>
+        <span>{title}</span>
+        <span className={`${styles.arrow} ${isOpen ? styles.arrowOpen : ''}`}>▶</span>
+      </button>
+      {isOpen && (
+        <div className={styles.collapsibleContent}>
+          <BrowserOnly fallback={<div>Loading API Specification...</div>}>
+            {() => {
+              require('rapidoc');
+              const { colorMode } = useColorMode();
+              const isDarkTheme = colorMode === 'dark';
+
+              return (
+                <rapi-doc
+                  spec-url={fullUrl}
+                  theme={isDarkTheme ? 'dark' : 'light'}
+                  bg-color={isDarkTheme ? '#0f1115' : '#ffffff'}
+                  text-color={isDarkTheme ? '#e5e7eb' : '#1f2937'}
+                  primary-color="#4C0B8A"
+                  render-style="view"
+                  show-header="false"
+                  show-info="true"
+                  allow-search="true"
+                  allow-advanced-search="false"
+                  style={{ height: '80vh', width: '100%', display: 'flex' }}
+                />
+              );
+            }}
+          </BrowserOnly>
+        </div>
+      )}
+    </div>
   );
 };
 

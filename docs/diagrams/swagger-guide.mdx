@@ -6,20 +6,20 @@ import SwaggerViewer from '@theme/SwaggerViewer';
 
 # Swagger/OpenAPI Viewer
 
-You can embed Swagger/OpenAPI specifications into your Markdown pages using the `SwaggerViewer` component. This component renders an interactive API documentation UI.
+You can embed Swagger/OpenAPI specifications into your Markdown pages using the `SwaggerViewer` component. This component renders a modern, interactive API documentation UI inside a collapsible container.
 
 ## Usage
 
-To use the `SwaggerViewer` component, you'll need to import it at the top of your `.mdx` file:
+To use the `SwaggerViewer` component, import it at the top of your `.mdx` file:
 
 ```md
 import SwaggerViewer from '@theme/SwaggerViewer';
 ```
 
-Then, you can use the component in your Markdown, providing the URL of the `json` or `yaml` spec file you want to display:
+Then, you can use the component in your Markdown, providing the filename of the spec from the `/static/api` directory:
 
 ```md
-<SwaggerViewer url="/api/swagger.json" />
+<SwaggerViewer url="swagger.json" />
 ```
 
 ### Custom Title
@@ -27,12 +27,12 @@ Then, you can use the component in your Markdown, providing the URL of the `json
 You can also specify a `title` for the collapsible section. The default value is `View API Specification`.
 
 ```md
-<SwaggerViewer url="/api/swagger.json" title="Explore the Petstore API" />
+<SwaggerViewer url="swagger.json" title="Explore the Petstore API" />
 ```
 
 ## Examples
 
 Here are live examples of the `SwaggerViewer` component in action, displaying the Petstore API from both a JSON and a YAML file.
 
-<SwaggerViewer url="/api/swagger.json" title="Petstore API (JSON)" />
-<SwaggerViewer url="/api/swagger.yaml" title="Petstore API (YAML)" />
+<SwaggerViewer url="swagger.json" title="Petstore API (JSON)" />
+<SwaggerViewer url="swagger.yaml" title="Petstore API (YAML)" />
