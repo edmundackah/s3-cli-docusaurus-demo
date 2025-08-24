@@ -24,15 +24,15 @@ const PdfViewer: React.FC<Props> = ({ url, width = '100%', height = '800px' }) =
   }, [url, baseUrl, isBrowser]);
 
   if (!url) {
-    return <div>PDF URL is missing.</div>;
+    return <h2>PDF URL is missing.</h2>;
   }
 
   if (!isBrowser || !pdfUrl) {
-    return <div>Loading PDF...</div>;
+    return <h2>Loading PDF...</h2>;
   }
 
   return (
-    <div style={{ width, height, marginBottom: '20px' }}>
+    <div style={{ width, height, marginBottom: '20px', overscrollBehavior: 'contain' }}>
       <EmbedPDF
         companyIdentifier="react-viewer"
         mode="inline"

@@ -1,0 +1,35 @@
+.collapsible {
+  border: 1px solid var(--ifm-border-color);
+  border-radius: var(--site-radius-sm);
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.collapsible summary {
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.collapsible summary:hover {
+  background-color: var(--ifm-background-surface-color);
+}
+
+.collapsible summary::after {
+  content: '▶';
+  font-size: 0.8em;
+  transition: transform 0.2s ease-in-out;
+}
+
+.collapsible[open] summary::after {
+  transform: rotate(90deg);
+}
+
+.collapsible[open] > div {
+  padding: 1.25rem;
+  border-top: 1px solid var(--ifm-border-color);
+}
