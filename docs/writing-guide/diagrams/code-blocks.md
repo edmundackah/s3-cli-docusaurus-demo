@@ -43,7 +43,7 @@ python s3-cli.py upload-file \
 
 ## Accessibility
 - Ensure sufficient contrast in terminal screenshots (prefer dark background with light text).
-- Don’t rely solely on color to convey meaning; include short text notes where needed.
+- Don’t rely solely on colour to convey meaning; include short text notes where needed.
 
 ## Titles, line numbers, and highlights
 Add titles to code blocks for context, and enable line numbers when useful:

@@ -1,0 +1,43 @@
+---
+title: PdfViewer
+description: Embed PDF files in a collapsible, responsive viewer.
+---
+
+import PdfViewer from '@theme/PdfViewer';
+
+# PdfViewer
+
+Use `PdfViewer` to embed PDF documents within pages. The viewer loads on demand inside a collapsible section.
+
+## When to use
+- To preview guides, forms, or reference PDFs alongside explanatory text
+- To keep pages light by loading PDFs only when expanded
+
+## File placement
+- Place PDFs in `website/static/pdfs`, then reference by filename.
+
+## Props
+- `url` (string, required): filename under `/pdfs` (e.g., `guide.pdf`)
+- `title` (string, optional): button text, default `View PDF`
+- `width` (string, optional): container width, default `100%`
+- `height` (string, optional): container height, default `800px`
+
+## Basic usage (MDX)
+```mdx
+import PdfViewer from '@theme/PdfViewer';
+
+<PdfViewer url="example.pdf" />
+```
+
+## Custom title and size
+```mdx
+<PdfViewer url="example.pdf" title="Open implementation guide" height="900px" />
+```
+
+## Live example
+<PdfViewer url="example.pdf" title="Sample PDF" />
+
+## Notes
+- The viewer requires browser context; a loading state is shown until ready.
+- PDFs are served from `/pdfs/<filename>` via the Docusaurus static folder.
+- Keep PDFs reasonably sized for faster loads.

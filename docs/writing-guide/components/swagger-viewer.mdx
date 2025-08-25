@@ -1,0 +1,40 @@
+---
+title: SwaggerViewer (OpenAPI)
+description: Embed interactive API documentation from OpenAPI/Swagger files.
+---
+
+import SwaggerViewer from '@theme/SwaggerViewer';
+
+# SwaggerViewer
+
+Use `SwaggerViewer` to embed an interactive OpenAPI/Swagger viewer inside a collapsible section.
+
+## When to use
+- To display API specs directly in docs without linking out
+- To provide a dark/light aware, searchable UI
+
+## File placement
+- Place spec files in `website/static/api`, then reference by filename.
+
+## Basic usage (MDX)
+```mdx
+import SwaggerViewer from '@theme/SwaggerViewer';
+
+<SwaggerViewer url="swagger.json" />
+```
+
+## With a custom title
+```mdx
+<SwaggerViewer url="swagger.yaml" title="Explore the API" />
+```
+
+## Live example
+<SwaggerViewer url="swagger.json" title="Petstore API (JSON)" />
+
+## Notes
+- The viewer automatically uses the site’s theme (light/dark).
+- Supported formats: JSON and YAML OpenAPI specs.
+- Files are served from `/api/<filename>` (via Docusaurus static folder).
+
+## Alternatives
+- [Docusaurus OpenAPI plugins](https://docusaurus.io/docs/api/plugins/@docusaurus/plugin-content-docs) or [Redocly](https://redocly.com/docs/). These may require additional configuration.
