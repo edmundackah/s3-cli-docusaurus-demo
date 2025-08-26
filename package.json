@@ -14,7 +14,7 @@
     "@docusaurus/theme-classic": "3.8.1",
     "@docusaurus/theme-mermaid": "3.8.1",
     "@easyops-cn/docusaurus-search-local": "^0.52.1",
-    "canvas-confetti": "^1.9.3",
+    "canvas-confetti": "file:libs/canvas-confetti-1.9.3.tgz",
     "clsx": "^2.1.1",
     "docusaurus-plugin-drawio": "^0.4.0",
     "docusaurus-plugin-image-zoom": "^2.0.0",
