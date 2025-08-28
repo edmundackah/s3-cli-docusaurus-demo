@@ -33,13 +33,13 @@ After running it, review the output under `website/docs/` and commit the changes
 - Collapsible sections: `??? abstract "Title"` ➜ HTML `<details><summary>Title</summary>...</details>`
 - Mermaid: Enabled globally; use fenced code blocks with `mermaid`
 - Code copy buttons: Included in Docusaurus theme
-- Custom JS/CSS: Place under `website/static/` and reference by path (we auto-load existing JS)
+- Custom JS/CSS: Place under `website/static/` and reference by path via the `scripts`/`stylesheets` config if needed
 
 ## Configuration mapping
 - MkDocs `site_name` ➜ Docusaurus `title` (in `docusaurus.config.ts`)
 - MkDocs `site_url` ➜ Docusaurus `url` + `baseUrl`
 - MkDocs `nav` ➜ Docusaurus `sidebars.ts` (we recreated the structure)
-- MkDocs `extra_javascript` / `extra_css` ➜ Copy into `website/static` and load (we auto-load `js/termynal.js` and `js/custom.js`)
+- MkDocs `extra_javascript` / `extra_css` ➜ Copy into `website/static` and load via `scripts`/`stylesheets` in `docusaurus.config.ts`
 
 ## Known gotchas
 - Angle brackets in headings (e.g. `## V<next-version>`) are parsed as JSX in MDX; escape as `\<next-version>`.

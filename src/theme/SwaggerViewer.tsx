@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import { useColorMode } from '@docusaurus/theme-common';
@@ -33,6 +33,7 @@ interface SwaggerViewerProps {
 
 const SwaggerViewer: React.FC<SwaggerViewerProps> = ({ url, title = 'View API Specification' }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isRapiDocReady, setIsRapiDocReady] = useState(false);
   const fullUrl = useBaseUrl(`/api/${url}`);
 
   return (
@@ -43,13 +44,28 @@ const SwaggerViewer: React.FC<SwaggerViewerProps> = ({ url, title = 'View API Sp
       </button>
       {isOpen && (
         <div className={styles.collapsibleContent}>
-          <BrowserOnly fallback={<div>Loading API Specification...</div>}>
+          <BrowserOnly fallback={<div style={{ height: '80vh', width: '100%' }} aria-busy="true" />}>
             {() => {
-              require('rapidoc');
+              useEffect(() => {
+                if (customElements.get('rapi-doc')) {
+                  setIsRapiDocReady(true);
+                  return;
+                }
+                const script = document.createElement('script');
+                script.src = 'https://unpkg.com/rapidoc/dist/rapidoc-min.js';
+                script.async = true;
+                script.onload = () => setIsRapiDocReady(true);
+                script.onerror = () => setIsRapiDocReady(false);
+                document.body.appendChild(script);
+                return () => {
+                  // Keep script cached after first load to avoid re-downloads
+                };
+              }, []);
+
               const { colorMode } = useColorMode();
               const isDarkTheme = colorMode === 'dark';
 
-              return (
+              return isRapiDocReady ? (
                 <rapi-doc
                   spec-url={fullUrl}
                   theme={isDarkTheme ? 'dark' : 'light'}
@@ -63,6 +79,8 @@ const SwaggerViewer: React.FC<SwaggerViewerProps> = ({ url, title = 'View API Sp
                   allow-advanced-search="false"
                   style={{ height: '80vh', width: '100%', display: 'flex' }}
                 />
+              ) : (
+                <div style={{ height: '80vh', width: '100%' }} aria-busy="true" />
               );
             }}
           </BrowserOnly>

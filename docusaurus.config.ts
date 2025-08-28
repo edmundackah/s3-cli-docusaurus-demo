@@ -1,5 +1,5 @@
 import type { Config } from '@docusaurus/types';
-import type { ThemeConfig } from '@docusaurus/preset-classic';
+import type { Options as ClassicPresetOptions, ThemeConfig } from '@docusaurus/preset-classic';
 import fs from 'fs';
 import path from 'path';
 
@@ -78,6 +78,7 @@ const config: Config = {
       rel: 'stylesheet',
     },
   ],
+  scripts: [],
   markdown: {
     mermaid: true,
   },
@@ -109,7 +110,7 @@ const config: Config = {
           ],
         },
         gtag: undefined,
-      } satisfies ThemeConfig,
+      } satisfies ClassicPresetOptions,
     ],
   ],
   plugins: [
