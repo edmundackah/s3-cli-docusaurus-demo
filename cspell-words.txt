@@ -1,0 +1,15 @@
+# Add project-specific words (proper nouns, acronyms, etc.) one per line
+S3
+Docusaurus
+MkDocs
+Rapidoc
+Swagger
+OpenAPI
+Drawio
+WireMock
+RestAssured
+GitLab
+Snowflake
+Grafana
+Confetti
+

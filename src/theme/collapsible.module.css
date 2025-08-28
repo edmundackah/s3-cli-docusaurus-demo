@@ -1,0 +1,40 @@
+.collapsibleContainer {
+  border: 1px solid var(--ifm-border-color);
+  border-radius: var(--site-radius-sm);
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.collapsibleButton {
+  background: none;
+  border: none;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease-in-out;
+  color: var(--ifm-color-content);
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.collapsibleButton:hover {
+  background-color: var(--ifm-background-surface-color);
+}
+
+.arrow {
+  font-size: 0.8em;
+  transition: transform 0.2s ease-in-out;
+}
+
+.arrowOpen {
+  transform: rotate(90deg);
+}
+
+.collapsibleContent {
+  padding: 1.25rem;
+  border-top: 1px solid var(--ifm-border-color);
+}

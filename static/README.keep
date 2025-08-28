@@ -1,3 +1,0 @@
-Static assets copied here will be served at the site root. For example, placing `js/custom.js` will make it available at `/js/custom.js`.
-
-
